@@ -1,3 +1,4 @@
+[主页](https://blog.0520.com.cn)
 # BroadcastChannel
 
 **Turn your Telegram Channel into a MicroBlog.**
