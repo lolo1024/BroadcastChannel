@@ -1,22 +1,27 @@
 import rss from '@astrojs/rss'
 import sanitizeHtml from 'sanitize-html'
 import { getChannelInfo } from '../lib/telegram'
-
-export const prerender = false
+import { getEnv } from '../lib/env'
 
 export async function GET(Astro) {
-  const request = Astro.request
   const { SITE_URL } = Astro.locals
-  const channel = await getChannelInfo(Astro)
+  const tag = Astro.url.searchParams.get('tag')
+  const channel = await getChannelInfo(Astro, {
+    q: tag ? `#${tag}` : '',
+  })
   const posts = channel.posts || []
 
+  const request = Astro.request
   const url = new URL(request.url)
   url.pathname = SITE_URL
+  url.search = ''
 
-  return rss({
-    title: channel.title,
+  const response = await rss({
+    title: `${tag ? `${tag} | ` : ''}${channel.title}`,
     description: channel.description,
     site: url.origin,
+    trailingSlash: false,
+    stylesheet: getEnv(import.meta.env, Astro, 'RSS_BEAUTIFY') ? '/rss.xsl' : undefined,
     items: posts.map(item => ({
       link: `posts/${item.id}`,
       title: item.title,
@@ -36,4 +41,9 @@ export async function GET(Astro) {
       }),
     })),
   })
+
+  response.headers.set('Content-Type', 'text/xml')
+  response.headers.set('Cache-Control', 'public, max-age=3600')
+
+  return response
 }

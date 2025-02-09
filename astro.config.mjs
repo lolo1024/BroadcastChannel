@@ -26,10 +26,10 @@ const adapterProvider = process.env.SERVER_ADAPTER || provider
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'hybrid',
+  output: 'server',
   adapter: providers[adapterProvider] || providers.node,
   integrations: [
-    ...process.env.SENTRY_DSN
+    ...(process.env.SENTRY_DSN
       ? [
           sentry({
             enabled: {
@@ -44,7 +44,7 @@ export default defineConfig({
             },
           }),
         ]
-      : [],
+      : []),
   ],
   vite: {
     ssr: {
@@ -57,6 +57,7 @@ export default defineConfig({
               'events',
               'worker_threads',
               'async_hooks',
+              'util',
               'node:diagnostics_channel',
               'node:net',
               'node:tls',

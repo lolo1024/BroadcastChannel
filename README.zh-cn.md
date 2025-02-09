@@ -46,6 +46,9 @@
 - [Bboysoul的博客](https://tg.bboy.app/)
 - [MakerHunter](https://share.makerhunter.com/)
 - [ChatGPT/AI新闻聚合](https://g4f.icu/)
+- [Abner's memos](https://memos.abnerz6.top/)
+- [小众软件的发现](https://talk.appinn.net/)
+- [小报童优惠与排行榜](https://youhui.xiaobaoto.com/)
 
 ### 平台
 
@@ -114,6 +117,24 @@ SENTRY_PROJECT=SENTRY_PROJECT
 ## Telegram 主机名称和静态资源代理，不建议修改
 HOST=telegram.dog
 STATIC_PROXY=
+
+## 启用谷歌站内搜索
+GOOGLE_SEARCH_SITE=memo.miantiao.me
+
+## 启用标签页, 标签使用英文逗号分割
+TAGS=标签A,标签B,标签C
+
+## 展示评论
+COMMENTS=true
+
+## 链接页面中的超链接, 使用英文逗号和分号分割
+LINKS=Title1,URL1;Title2,URL3;Title3,URL3;
+
+## 侧边栏导航项, 使用英文逗号和分号分割
+NAVS=Title1,URL1;Title2,URL3;Title3,URL3;
+
+## 启用 RSS 美化
+RSS_BEAUTIFY=true
 ```
 
 ## 🙋🏻 常问问题
@@ -128,5 +149,5 @@ STATIC_PROXY=
 ## ☕ 赞助
 
 1. [在 Telegram 关注我](https://t.me/miantiao_me)
-2. [在 𝕏 上关注我](https://x.com/ccbikai)
+2. [在 𝕏 上关注我](https://404.li/x)
 3. [在 GitHub 赞助我](https://github.com/sponsors/ccbikai)
