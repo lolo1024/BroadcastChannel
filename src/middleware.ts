@@ -1,4 +1,6 @@
-export async function onRequest(context, next) {
+import { defineMiddleware } from 'astro:middleware'
+
+export const onRequest = defineMiddleware(async (context, next) => {
   context.locals.SITE_URL = `${import.meta.env.SITE ?? ''}${import.meta.env.BASE_URL}`
   context.locals.RSS_URL = `${context.locals.SITE_URL}rss.xml`
   context.locals.RSS_PREFIX = ''
@@ -21,4 +23,4 @@ export async function onRequest(context, next) {
     }
   }
   return response
-};
+})

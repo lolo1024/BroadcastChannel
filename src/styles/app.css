@@ -1,0 +1,145 @@
+@import 'tailwindcss';
+@import './content.css';
+
+@view-transition {
+  navigation: auto;
+}
+
+@theme {
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --breakpoint-sm: 37.5rem;
+  --color-paper: #f4f1ec;
+  --color-ink: #000000;
+  --color-heading: #333333;
+  --color-accent: #b23b00;
+  --color-surface: #ffffff;
+  --color-code: #f9f9f9;
+  --color-muted: #706862;
+  --color-link: #5a6570;
+  --color-link-hover: #3f4850;
+  --color-line: rgba(0, 0, 0, 0.05);
+  --color-footer: #666666;
+  --shadow-soft:
+    0 1px 2px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02), 0 4px 8px rgba(0, 0, 0, 0.02),
+    0 8px 16px rgba(0, 0, 0, 0.02);
+  --radius-panel: 3px;
+  --radius-media: 8px;
+}
+
+@layer base {
+  :root {
+    --box-margin: 10px;
+    --back-to-top-offset: 1.25rem;
+    --back-to-top-size: 2rem;
+    --dot-size: 8px;
+    --icon-hover-filter: invert(51%) sepia(0%) saturate(0%) hue-rotate(23deg) brightness(90%) contrast(90%);
+    --icon-secondary-filter: invert(97%) sepia(0%) saturate(0%) hue-rotate(129deg) brightness(86%) contrast(88%);
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  a:link,
+  a:visited {
+    color: var(--color-link);
+    text-decoration: none;
+    line-break: loose;
+  }
+
+  a:hover {
+    color: var(--color-link-hover);
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid var(--color-heading);
+    outline-offset: 2px;
+  }
+
+  hr {
+    border: none;
+    height: 2px;
+    color: var(--color-line);
+    background-color: var(--color-line);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  .tag-icon {
+    width: 16px;
+    height: 16px;
+    background-size: 16px 16px;
+    opacity: 0.25;
+    background-image: url('../assets/tags.png');
+    background-repeat: no-repeat;
+    display: inline-block;
+  }
+
+  #main-content {
+    position: relative;
+  }
+
+  #back-to-top-wrapper {
+    position: absolute;
+    inset-inline-end: var(--back-to-top-offset);
+    top: calc(200vh - var(--back-to-top-size) - var(--back-to-top-offset));
+    bottom: 0;
+    width: var(--back-to-top-size);
+    pointer-events: none;
+  }
+
+  #back-to-top {
+    position: fixed;
+    inset-inline-end: var(--back-to-top-offset);
+    bottom: var(--back-to-top-offset);
+  }
+
+  @supports (position: sticky) {
+    #back-to-top {
+      position: sticky;
+      top: calc(100vh - var(--back-to-top-size) - var(--back-to-top-offset));
+      inset-inline-end: auto;
+      bottom: auto;
+      pointer-events: auto;
+    }
+  }
+}
