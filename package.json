@@ -1,5 +1,5 @@
 {
-  "packageManager": "pnpm@10.11.0",
+ "packageManager": "pnpm@9.12.3",
   "name": "broadcast-channel",
   "type": "module",
   "version": "0.2.0",
