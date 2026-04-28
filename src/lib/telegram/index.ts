@@ -484,7 +484,7 @@ async function extractPost($: CheerioAPI, item: AnyNode | null, options: Extract
     const tagLink = $(tagNode)
     const tagText = tagLink.text()
 
-    tagLink.attr('href', `/search/${encodeURIComponent(tagText)}`)
+    tagLink.attr('href', `/search/result?q=${encodeURIComponent(tagText)}`)
 
     const normalizedTag = tagText.replace('#', '')
     if (normalizedTag) {

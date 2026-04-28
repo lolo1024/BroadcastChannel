@@ -39,6 +39,7 @@ const tagStandaloneClass = 'pt-[30px]'
 const tagLinkClass =
   'inline-block rounded-[4px] border border-line px-[10px] py-[2px] text-muted no-underline hover:border-accent hover:text-accent hover:no-underline'
 const commentsClass = 'ml-[3px] border-l-2 border-line pb-6 pl-[15px] pt-[6px] sm:pl-[30px]'
+const getTagHref = (tag: string) => `/search/result?q=${encodeURIComponent(`#${tag}`)}`
 ---
 
 <article class={articleClass} style={{ 'view-transition-name': `post-${post.id}` }}>
@@ -84,8 +85,8 @@ const commentsClass = 'ml-[3px] border-l-2 border-line pb-6 pl-[15px] pt-[6px] s
     hasTags && (
       <footer class:list={[tagBoxClass, tagPaddingClass, !hasContent && tagStandaloneClass]}>
         <span class="tag-icon" aria-hidden="true" />
-        {post.tags.map((tag) => (
-          <a href={`/search/%23${tag}`} title={tag} class={tagLinkClass}>
+        {post.tags.map((tag: string) => (
+          <a href={getTagHref(tag)} title={tag} class={tagLinkClass}>
             {tag}
           </a>
         ))}

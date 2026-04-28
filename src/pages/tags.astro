@@ -11,10 +11,14 @@ channel.seo = {
   title: 'Tags',
 }
 
-const items = (getEnv(import.meta.env, Astro, 'TAGS') || '').split(',').map((tag) => ({
-  href: `/search/%23${tag}`,
-  label: tag,
-}))
+const items = (getEnv(import.meta.env, Astro, 'TAGS') || '')
+  .split(',')
+  .map((tag) => tag.trim())
+  .filter(Boolean)
+  .map((tag) => ({
+    href: `/search/result?q=${encodeURIComponent(`#${tag}`)}`,
+    label: tag,
+  }))
 ---
 
 <Layout channel={channel}>
