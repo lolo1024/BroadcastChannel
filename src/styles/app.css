@@ -119,11 +119,6 @@
   }
 
   #back-to-top-wrapper {
-    position: absolute;
-    inset-inline-end: var(--back-to-top-offset);
-    top: calc(200vh - var(--back-to-top-size) - var(--back-to-top-offset));
-    bottom: 0;
-    width: var(--back-to-top-size);
     pointer-events: none;
   }
 
@@ -131,15 +126,32 @@
     position: fixed;
     inset-inline-end: var(--back-to-top-offset);
     bottom: var(--back-to-top-offset);
+    pointer-events: auto;
   }
 
-  @supports (position: sticky) {
+  @supports (animation-timeline: scroll()) {
     #back-to-top {
-      position: sticky;
-      top: calc(100vh - var(--back-to-top-size) - var(--back-to-top-offset));
-      inset-inline-end: auto;
-      bottom: auto;
-      pointer-events: auto;
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+      animation: back-to-top-reveal linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 100vh;
+    }
+
+    @keyframes back-to-top-reveal {
+      0%,
+      99% {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+      }
+
+      100% {
+        opacity: 0.9;
+        pointer-events: auto;
+        visibility: visible;
+      }
     }
   }
 }
